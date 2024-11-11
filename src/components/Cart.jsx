@@ -11,10 +11,12 @@ const Cart = ({ cart, setCart }) => {
     };
 
     const decreaseQuantity = (itemId) => {
-        setCart(prevCart =>
-            prevCart.map(item =>
-                item.id === itemId && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item
-            )
+        setCart(prevCart => 
+            prevCart
+                .map(item =>
+                    item.id === itemId ? { ...item, quantity: item.quantity - 1 } : item
+                )
+                .filter(item => item.quantity > 0)
         );
     };
 
